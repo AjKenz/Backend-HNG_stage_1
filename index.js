@@ -22,7 +22,7 @@ app.get('/api', async (req, res) => {
             current_day: currentDay,
             utc_time: formattedUtcTime,
             track: track,
-            github_file_url: 'https://github.com/AjKenz/HNG_stage_1/blob/master/index.js',
+            github_file_url: 'https://github.com/AjKenz/HNG_stage_1/blob/main/index.js',
             github_repo_url: 'https://github.com/AjKenz/HNG_stage_1',
             status_code: 200
         })
