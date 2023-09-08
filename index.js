@@ -15,7 +15,7 @@ app.get('/api', async (req, res) => {
         const currentTime = new Date();
         const randomOffset = (Math.random() * 4 - 2) * 60 * 1000;
         const utcTimeWithOffset = new Date(currentTime.getTime() + randomOffset);
-        const formattedUtcTime = utcTimeWithOffset.toISOString().slice(0, -5) + 'Z';
+        const formattedUtcTime = utcTimeWithOffset.toISOString().replace(/\.\d{3}Z$/, 'Z');
 
         res.status(200).json({
             slack_name: slack_name,
