@@ -12,15 +12,19 @@ app.get('/api', async (req, res) => {
         const currentDay = currentDate.toLocaleDateString('en-US', { weekday: 'long' })
 
 
-        const currentTime = new Date();
-        const randomOffset = (Math.random() * 4 - 2) * 60 * 1000;
-        const utcTimeWithOffset = new Date(currentTime.getTime() + randomOffset);
-        const formattedUtcTime = utcTimeWithOffset.toISOString().replace(/\.\d{3}Z$/, 'Z');
+      const year = currentDate.getUTCFullYear();
+      const month = (currentDate.getUTCMonth() + 1).toString().padStart(2, '0');
+      const day = currentDate.getUTCDate().toString().padStart(2, '0');
+      const hours = currentDate.getUTCHours().toString().padStart(2, '0');
+      const minutes = currentDate.getUTCMinutes().toString().padStart(2, '0');
+      const seconds = currentDate.getUTCSeconds().toString().padStart(2, '0');
+  
+      const currentUTC = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}Z`
 
         res.status(200).json({
             slack_name: slack_name,
             current_day: currentDay,
-            utc_time: formattedUtcTime,
+            utc_time: currentUTC,
             track: track,
             github_file_url: 'https://github.com/AjKenz/HNG_stage_1/blob/main/index.js',
             github_repo_url: 'https://github.com/AjKenz/HNG_stage_1',
